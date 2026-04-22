@@ -1,0 +1,45 @@
+name = "quotecheck"
+main = "apps/worker/src/handler.ts"
+compatibility_date = "2024-04-09"
+compatibility_flags = ["nodejs_compat"]
+
+[[env]]
+name = "production"
+routes = [{ pattern = "api.quotecheck.com/*", zone_id = "YOUR_ZONE_ID" }]
+
+[env.production.d1_databases]
+DB = { binding = "DB", database_name = "quotecheck", id = "YOUR_DB_ID" }
+
+[env.production.r2_buckets]
+R2 = { binding = "QUOTECHECK_R2", bucket_name = "quotecheck-photos" }
+
+[env.production.vars]
+ENVIRONMENT = "production"
+TURNSTILE_SITE_KEY = "YOUR_TURNSTILE_SITE_KEY"
+
+[[env]]
+name = "development"
+routes = [{ pattern = "localhost/*" }]
+
+[env.development.d1_databases]
+DB = { binding = "DB", database_name = "quotecheck-dev", id = "YOUR_DEV_DB_ID" }
+
+[env.development.r2_buckets]
+R2 = { binding = "QUOTECHECK_R2", bucket_name = "quotecheck-photos-dev" }
+
+[env.development.vars]
+ENVIRONMENT = "development"
+TURNSTILE_SITE_KEY = "1x00000000000000000000AA"
+
+[build]
+command = "npm run build:worker"
+cwd = "./"
+
+[build.upload]
+format = "modules"
+main = "./apps/worker/src/handler.ts"
+
+[[build.upload.rules]]
+type = "CompiledContentType"
+globs = ["**/*.wasm"]
+fallthrough = true

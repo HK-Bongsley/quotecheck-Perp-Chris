@@ -1,0 +1,26 @@
+{
+  "name": "@quotecheck/estimator",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Pure TypeScript estimation engine for QuoteCheck",
+  "main": "engine.ts",
+  "scripts": {
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:coverage": "vitest --coverage"
+  },
+  "exports": {
+    ".": "./engine.ts",
+    "./pricing": "./pricing.ts",
+    "./rules": "./rules.ts",
+    "./confidence": "./confidence.ts",
+    "./photo-signal": "./photo-signal.ts"
+  },
+  "dependencies": {
+    "@quotecheck/types": "workspace:*"
+  },
+  "devDependencies": {
+    "vitest": "^1.0.0",
+    "typescript": "^5.4.5"
+  }
+}

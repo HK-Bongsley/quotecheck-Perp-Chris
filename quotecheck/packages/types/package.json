@@ -1,0 +1,17 @@
+{
+  "name": "@quotecheck/types",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Shared types and Zod schemas for QuoteCheck",
+  "main": "index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./zod": "./zod.ts"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

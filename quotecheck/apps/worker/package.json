@@ -1,0 +1,25 @@
+{
+  "name": "worker",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "build": "tsc && npm run build:types",
+    "build:types": "tsc --emitDeclarationOnly",
+    "db:push": "wrangler d1 migrations apply quotecheck --remote",
+    "db:seed": "wrangler execute --command 'node migrations/0002_seed_demo.ts' --remote"
+  },
+  "dependencies": {
+    "itty-router": "^5.0.0",
+    "uuid": "^9.0.0",
+    "@quotecheck/types": "workspace:*",
+    "@quotecheck/estimator": "workspace:*",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240409.0",
+    "typescript": "^5.4.5",
+    "wrangler": "^3.31.0"
+  }
+}
